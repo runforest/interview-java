@@ -35,7 +35,7 @@ Use the Spring Boot, Spring MVC, Spring Data JPA, and database components alread
 
 | Method | Endpoint | Expected behavior |
 | --- | --- | --- |
-| `POST` | `/tickets` | Create a support ticket and return `201 Created` |
+| `POST` | `/tickets` | Create a support ticket and return `201 Created` with the created ticket in the JSON response body |
 | `GET` | `/tickets` | Return all existing support tickets |
 | `PATCH` | `/tickets/{id}/resolve` | Mark an existing support ticket as resolved |
 
@@ -57,6 +57,18 @@ Expected status:
 
 ```http
 201 Created
+```
+
+The response must include the created support ticket as JSON, with the generated `id`, the supplied `subject`, and `resolved` set to `false`. Do not return an empty response body.
+
+Example response body:
+
+```json
+{
+  "id": 1,
+  "subject": "Unable to reset password",
+  "resolved": false
+}
 ```
 
 ### List all support tickets
